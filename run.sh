@@ -5,9 +5,9 @@ set -e
 set -u
 set -o pipefail
 
-fs=22050
-n_fft=1024
-n_shift=256
+fs=48000
+n_fft=2048
+n_shift=512
 
 opts=
 if [ "${fs}" -eq 22050 ]; then
@@ -21,11 +21,12 @@ train_set=tr_no_dev
 valid_set=dev
 test_sets="dev eval1"
 
+
 train_config=conf/tuning/train_fastspeech2.yaml
 inference_config=conf/tuning/decode_fastspeech.yaml
 
 # g2p=g2p_en # Include word separator
-g2p=g2p_en_no_space # Include no word separator
+g2p=None # Include no word separator
 
 ./tts.sh \
     --lang en \
